@@ -1,0 +1,91 @@
+@import "bootstrap/scss/functions";
+
+.bg-primary {
+  background: linear-gradient(45deg, #ef3e2c, #e71f63) !important;
+}
+
+.form-control {
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #ef3e2c, #e71f63) !important;
+  border: none !important;
+}
+
+.text-primary {
+  --bs-primary-rgb: 239, 62, 44;
+}
+
+.form-check-input {
+  box-shadow: none !important;
+}
+
+.form-check-input:checked {
+  background-color: #ef3e2c !important;
+  border: 1px solid #ef3e2c !important;
+}
+
+.el-menu-item,
+.el-sub-menu__title {
+  height: 40px !important;
+  border-radius: 8px !important;
+}
+
+.el-menu-item:hover,
+.el-sub-menu__title:hover {
+  --el-menu-hover-bg-color: #ef3e2c !important;
+  color: white !important;
+  border-radius: 8px !important;
+  svg {
+    fill: white;
+  }
+}
+
+.el-menu-item.is-active {
+  background: linear-gradient(45deg, #ef3e2c, #e71f63) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  svg {
+    fill: white;
+  }
+}
+
+svg {
+  fill: black;
+}
+
+.el-avatar {
+  background: #c7b9da33 !important;
+  font-weight: 500 !important;
+  color: #7f56d9 !important;
+}
+
+.el-button,
+.el-button.is-round {
+  padding: 16px 10px !important;
+  gap: 8px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600px !important;
+}
+
+.el-button--primary {
+  --el-button-bg-color: #ef3e2c !important;
+  --el-button-hover-bg-color: #ef3e2c !important;
+  --el-button-text-color: white !important;
+  --el-button-border-color: #ef3e2c !important;
+  --el-button-hover-border-color: #ef3e2c !important;
+  svg {
+    fill: white;
+  }
+}
+
+.el-button--secondary {
+  --el-button-hover-bg-color: #ef3e2c !important;
+  --el-button-hover-border-color: #ef3e2c !important;
+  --el-button-hover-text-color: white !important;
+}
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/bootstrap";

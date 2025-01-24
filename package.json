@@ -1,0 +1,32 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus/nuxt": "^1.1.1",
+    "@nuxtjs/i18n": "^9.1.1",
+    "@vee-validate/nuxt": "^4.15.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "element-plus": "^2.9.3",
+    "js-yaml": "^4.1.0",
+    "nuxt": "^3.15.2",
+    "nuxt-graphql-client": "^0.2.43",
+    "pug": "^3.0.3",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
+    "yaml-loader": "^0.8.1"
+  }
+}
