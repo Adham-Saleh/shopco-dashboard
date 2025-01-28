@@ -1,1 +1,59 @@
-adham: أدهم
+signUpForAnAccount: التسجيل للحصول على حساب
+signInToYourAccount: تسجيل الدخول إلى حسابك
+welcomeBackPleaseEnterYourDetail: مرحبًا بعودتك! يرجى إدخال تفاصيلك
+rememberMe: تذكرني
+byCreatingAnAccountMeansYouAgreeToThe: من خلال إنشاء حساب، فإنك توافق على
+termsAndConditions: الشروط والأحكام
+andOur: و
+privacyPolicy: سياسة الخصوصية
+dontHaveAnAccount: ليس لديك حساب؟
+alreadyHaveAnAccount: لديك حساب بالفعل؟
+signup: تسجيل
+signin: تسجيل الدخول
+forgetPassword: هل نسيت كلمة المرور؟
+username: اسم المستخدم
+email: البريد الإلكتروني
+password: كلمة المرور
+
+home: الرئيسية
+users: المستخدمون
+experts: الخبراء
+content: المحتوى
+room: الغرفة
+appManagement: إدارة التطبيق
+
+welcome: مرحبًا
+
+export: تصدير
+addUser: إضافة مستخدم
+activeUsers: المستخدمون النشطون
+blockedUsers: المستخدمون المحظورون
+search: بحث
+filter: تصفية
+allUsers: جميع المستخدمين
+name: الاسم
+mobileNumber: رقم الجوال
+region: المنطقة
+createdAt: تاريخ الإنشاء
+preview: معاينة
+edit: تعديل
+delete: حذف
+noUsersExists: لا يوجد مستخدمون
+previous: السابق
+next: التالي
+
+addUserAccount: إضافة حساب مستخدم
+addPhotoAndPersonalDetailsHere: أضف الصورة والتفاصيل الشخصية هنا
+reset: إعادة تعيين
+add: إضافة
+
+accountInfo: معلومات الحساب
+role: الدور
+admin: المسؤول
+customer: العميل
+firstName: الاسم الأول
+lastName: الاسم الأخير
+
+block: حظر
+account: الحساب
+emailAddress: عنوان البريد الإلكتروني

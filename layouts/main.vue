@@ -1,9 +1,8 @@
 <template lang="pug">
     .container-fluid.vh-100
         .row
-            .col-lg-2.p-0
-                AppMenu
-            .col-lg
+            AppMenu.col-lg-2
+            .col-lg.overflow-hidden.mt-4
                 slot
 </template>
 

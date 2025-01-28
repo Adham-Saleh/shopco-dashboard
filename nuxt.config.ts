@@ -7,9 +7,25 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
     "@element-plus/nuxt",
+    "@nuxtjs/google-fonts",
+    "@pinia/nuxt",
   ],
   elementPlus: {
     /** Options */
+  },
+  runtimeConfig: {
+    public: {
+      GQL_HOST: process.env.BASE_URL || "https://api.escuelajs.co/graphql", // overwritten by process.env.GQL_HOST
+    },
+  },
+  "graphql-client": {
+    documentPaths: ["./queries"],
+  },
+  googleFonts: {
+    families: {
+      "IBM+Plex+Sans": [400, 500, 600, 700],
+    },
+    display: "swap",
   },
   i18n: {
     strategy: "prefix_except_default",

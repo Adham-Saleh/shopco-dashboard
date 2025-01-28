@@ -1,5 +1,9 @@
 @import "bootstrap/scss/functions";
 
+body {
+  --bs-body-font-family: "IBM Plex Sans", sans-serif !important;
+}
+
 .bg-primary {
   background: linear-gradient(45deg, #ef3e2c, #e71f63) !important;
 }
@@ -51,6 +55,28 @@
   }
 }
 
+.el-menu--collapse {
+  .el-menu-item,
+  .el-sub-menu__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .el-sub-menu__icon-arrow {
+    display: none !important;
+  }
+}
+
+.el-menu--popup {
+  border-radius: 8px !important;
+  min-width: 200px;
+  padding: 7px !important;
+}
+
+.el-menu-item-group__title {
+  padding: 0 !important;
+}
+
 svg {
   fill: black;
 }
@@ -68,6 +94,8 @@ svg {
   border-radius: 8px !important;
   font-size: 14px !important;
   font-weight: 600px !important;
+  --el-button-active-bg-color: #ef3e2c !important;
+  --el-button-active-border-color: #ef3e2c !important;
 }
 
 .el-button--primary {
@@ -76,6 +104,8 @@ svg {
   --el-button-text-color: white !important;
   --el-button-border-color: #ef3e2c !important;
   --el-button-hover-border-color: #ef3e2c !important;
+  --el-button-active-bg-color: #ef3e2c !important;
+  --el-button-active-border-color: #ef3e2c !important;
   svg {
     fill: white;
   }
@@ -85,6 +115,88 @@ svg {
   --el-button-hover-bg-color: #ef3e2c !important;
   --el-button-hover-border-color: #ef3e2c !important;
   --el-button-hover-text-color: white !important;
+}
+
+.el-button--secondary:hover {
+  svg {
+    fill: white !important;
+  }
+}
+
+.el-tabs__item.is-active,
+.el-tabs__item:hover,
+.el-tabs__active-bar {
+  --el-color-primary: #ef3e2c !important;
+}
+
+.el-tabs__active-bar {
+  padding: 2px !important;
+  border-radius: 8px 8px 0px 0px !important;
+}
+
+.el-table th.el-table__cell {
+  --el-table-header-bg-color: #f5f5f5;
+}
+
+.el-pagination {
+  --el-pagination-text-color: black !important;
+  --el-pagination-border-radius: 8px !important;
+  --el-pagination-hover-color: #ef3e2c !important;
+}
+
+.el-pagination.is-background .el-pager li.is-active {
+  background-color: #f9fafb !important;
+  color: #ef3e2c !important;
+}
+
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  background-color: transparent !important;
+}
+
+.el-dropdown__popper .el-dropdown__list {
+  overflow: hidden !important;
+  min-width: 150px !important;
+  max-width: 150px !important;
+}
+
+.el-popper__arrow {
+  display: none !important;
+}
+
+.el-dropdown {
+  --el-dropdown-menuItem-hover-color: none !important;
+}
+
+.el-dropdown-menu {
+  border: 1px solid white !important;
+  border-radius: 8px !important;
+  padding: 10px 0 !important;
+}
+
+.el-dropdown-menu__item:not(.is-disable):hover {
+  background-color: #f9fafb !important;
+  color: #ef3e2c !important;
+}
+
+.el-popper {
+  border-radius: 8px !important;
+}
+
+.el-breadcrumb__inner a:hover,
+.el-breadcrumb__inner.is-link:hover {
+  --el-color-primary: #ef3e2c !important;
+}
+
+.el-message--error {
+  border-radius: 50px !important;
+  font-weight: 600;
+}
+
+.el-message--success {
+  border-radius: 50px !important;
+  font-weight: 600;
 }
 
 @import "bootstrap/scss/variables";

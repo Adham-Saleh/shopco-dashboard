@@ -1,10 +1,10 @@
 <template lang="pug">
-      Form(style="width: 404px;")
+      Form(style="width: 404px;" :validationSchema="formSchema" @submit="handleSubmit")
         h3 {{isLogin ? t('signInToYourAccount') : t('signUpForAnAccount')}}
         p.text-muted(v-if="isLogin") {{t('welcomeBackPleaseEnterYourDetail')}}
-        InputText(type="text" placeholder="Username" suffix="username" name="username" v-if="!isLogin")
-        InputText(type="email" placeholder="Email" suffix="email" name='email')
-        InputText(type="password" placeholder="Password" suffix="password" name="password")
+        InputText.py-2.px-3.mt-3(type="text" :placeholder="$t('username')" suffix="User" name="username" v-if="!isLogin")
+        InputText.py-2.px-3.mt-3(type="email" :placeholder="$t('email')" suffix="Email" name='email')
+        InputText.py-2.px-3.mt-3(type="password" :placeholder="$t('password')" suffix="Password" name="password")
 
         .user-actions.d-flex.justify-content-between.align-items-center.mt-3
           .form-check.d-flex.algin-items-center.gap-2
@@ -13,18 +13,23 @@
               span.fw-bold(v-if="isLogin") {{t('rememberMe')}}
               span(v-else) {{t('byCreatingAnAccountMeansYouAgreeToThe')}} #[span.fw-bold {{t('termsAndConditions')}}] {{t('andOur')}} #[span.fw-bold {{t('privacyPolicy')}}]
           .forget-password(v-if="isLogin")
-            button.btn.p-0.fw-bold.text-primary(style=" font-size: 14px;") {{t('forgetPassword')}}
+            button.btn.p-0.fw-bold.text-primary(style=" font-size: 14px;" type="button") {{t('forgetPassword')}}
         
         .submit-btn
-          button.btn.btn-primary.w-100.rounded-5.mt-5.p-3(type="submit") {{isLogin ? 'Sign In' : 'Sign Up'}}
+          el-button.w-100.rounded-5.mt-5.p-4(type="primary" native-type="submit" :loading="loading") {{isLogin ? t('signin') : t('signup')}}
         
         div.d-flex.justify-content-center.mt-3
-          span.d-flex.algin-items-center.gap-1(v-if="isLogin") {{t('dontHaveAnAccount')}} #[button.btn.text-primary.p-0.m-0.fw-bold(@click="handleTogglePage(false)") {{t('signUp')}}]
-          span.d-flex.algin-items-center.gap-1(v-else) {{t('alreadyHaveAnAccount')}} #[button.btn.text-primary.p-0.m-0.fw-bold(@click="handleTogglePage(true)") {{t('logIn')}}]
+          span.d-flex.algin-items-center.gap-1(v-if="isLogin") {{t('dontHaveAnAccount')}} #[button.btn.text-primary.p-0.m-0.fw-bold(@click="handleTogglePage(false)") {{t('signup')}}]
+          span.d-flex.algin-items-center.gap-1(v-else) {{t('alreadyHaveAnAccount')}} #[button.btn.text-primary.p-0.m-0.fw-bold(@click="handleTogglePage(true)") {{t('signin')}}]
 </template>
 
 <script setup lang="ts">
+import * as yup from "yup";
+import { authStore } from "@/store/auth";
+
 const { t, locale } = useI18n();
+const auth = authStore();
+const loading = ref<boolean>(false);
 const props = defineProps({
   isLogin: {
     type: Boolean,
@@ -35,6 +40,41 @@ const emit = defineEmits(["togglePage"]);
 
 const handleTogglePage = function (isLogin: boolean) {
   emit("togglePage", isLogin);
+};
+
+const formSchema = yup.object({
+  email: yup.string().required().email().label(t("email")),
+  password: yup
+    .string()
+    .required("Field is required")
+    .min(8, "Your password is not strong enough. Use at least 8 characters")
+    .label(t("password")),
+});
+
+const handleSubmit = async function (values: {
+  username?: string;
+  email: string;
+  password: string;
+}) {
+  const { username, email, password } = values;
+  console.log(email, password);
+  loading.value = true;
+  if (props.isLogin) {
+    const { accessToken, refreshToken } = await auth.login(email, password);
+    if (!accessToken) {
+      ElMessage({
+        type: "error",
+        message: "Wrong email or password",
+      });
+    }
+    useGqlToken(accessToken as string);
+    const me = await auth.authorize();
+    ElMessage({
+      type: "success",
+      message: "Logged in successfully",
+    });
+  }
+  loading.value = false;
 };
 </script>
 

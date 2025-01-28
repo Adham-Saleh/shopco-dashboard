@@ -9,9 +9,12 @@ andOur: and our
 privacyPolicy: Privacy Policy
 dontHaveAnAccount: Don’t have an account?
 alreadyHaveAnAccount: Already have an account?
-signUp: Sign Up
-logIn: Log In
+signup: Sign Up
+signin: Sign In
 forgetPassword: Forget password?
+username: Username
+email: Email
+password: Password
 
 #menu
 home: Home
@@ -20,5 +23,44 @@ experts: Experts
 content: Content
 room: Room
 appManagement: App Management
+
 #home
 welcome: Welcome
+
+#users table
+export: Export
+addUser: Add User
+activeUsers: Active users
+blockedUsers: Blocked users
+search: Search
+filter: Filter
+allUsers: All Users
+name: Name
+mobileNumber: Mobile number
+region: Region
+createdAt: Created at
+preview: Preview
+edit: Edit
+delete: Delete
+noUsersExists: No users exists
+previous: Previous
+next: Next
+
+#add user
+addUserAccount: Add user account
+addPhotoAndPersonalDetailsHere: Add photo and personal details here
+reset: Reset
+add: Add
+
+#form
+accountInfo: Account Info
+role: Role
+admin: Admin
+customer: Customer
+firstName: First Name
+lastName: Last Name
+
+#single user page
+block: Block
+account: Account
+emailAddress: Email Address
