@@ -1,0 +1,23 @@
+query users($limit: Float) {
+  users(limit: $limit) {
+    id
+    email
+    name
+    avatar
+    creationAt
+    updatedAt
+    role
+  }
+}
+
+query user($id: ID!) {
+  user(id: $id) {
+    id
+    email
+    name
+    avatar
+    creationAt
+    updatedAt
+    role
+  }
+}

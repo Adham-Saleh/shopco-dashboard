@@ -1,14 +1,13 @@
 <template lang="pug">
-    //- label {{label}}
-    .input-container.border.d-flex.justify-content-between.rounded-1.py-2.px-3(:class="{'border-danger': errorMessage}")
+    label(v-if="label") {{label}}
+    .input-container.border.d-flex.justify-content-between.rounded-1(:class="[{'border-danger': errorMessage},  $attrs.class]" :style="$attrs.style ")
         .input-with-suffix.d-flex.algin-items-center.w-100
             Icon.my-auto(:name="`${suffix}`")
             input.form-control.border-0(:type="type === 'password' ? passwordType : type" :placeholder="placeholder" :name="name" v-model="inputValue")
         .is-password.d-flex.align-items-center(v-if="type === 'password'")
             button.border-0.bg-transparent.d-flex.align-items-center(@click="handleShowPassword(passwordType === 'password' ? 'show' : 'hide')" type="button")
                 Icon(name='EyeSlash')
-    //- div(v-if="errorMessage") {{errorMessage}}
-    //- .err-msg.d-flex.align-items-center.gap-2.py-1(v-if="errorMessage")
+    .err-msg.d-flex.align-items-center.gap-2.py-1(v-if="errorMessage")
       Icon(name="Error")
       span.fw-medium(style="font-size: 12px; color: #B71A2A;") {{errorMessage}}
 </template>

@@ -9,10 +9,10 @@
                           Icon(:name="`${item.icon}`")
                           span.fw-bold(v-if="!collapse") {{item.name}}
                   el-menu-item-group(v-for="subItem,subIdx in item.submenu")
-                      NuxtLink.text-decoration-none(:to="`${subItem.link}`")
+                      NuxtLink.text-decoration-none(:to="localePath(`${subItem.link}`)")
                           el-menu-item(:index="`${idx}-${subIdx}`") 
                               span.fw-bold {{subItem.name}}
-              NuxtLink.text-decoration-none(:to="`${item.link}`" v-else)
+              NuxtLink.text-decoration-none(:to="localePath(`${item.link}`)" v-else)
                   el-menu-item(:index="`${idx}`")
                       .d-flex.align-items-center(style="gap: 12px;")
                           Icon(:name="`${item.icon}`")
@@ -22,17 +22,23 @@
               hr(style="opacity: 0.1;" v-if="!collapse")
               .admin-info.d-flex.justify-content-between.align-items-center.py-3
                 .d-flex.align-items-center(style="gap: 12px;")
-                  el-avatar(:size="40") AS
+                  el-avatar(:size="40" :src="user?.avatar") {{user?.avatar ? '' : user?.name?.at(0)?.toUpperCase() + user?.name?.at(1)?.toUpperCase() }}
                   .admin-information(v-if="!collapse")
-                    p.m-0(style="font-size: 14px; font-weight: 600;") Adham Saleh
+                    p.m-0(style="font-size: 14px; font-weight: 600;") {{user?.name}}
                     p.m-0(style="font-size: 14px; font-weight: 400;") Super Admin
-                .logout(v-if="!collapse")
+                .logout(v-if="!collapse" @click="handleLogout")
                   Icon(name="Logout" style="fill: none; cursor: pointer;")
 </template>
 
 <script setup lang="ts">
+import { authStore } from "@/store/auth";
+import { localePath } from "~/node_modules/@nuxtjs/i18n/dist/runtime/routing/compatibles/routing";
+
 const { t, locale } = useI18n();
+const localePath = useLocalePath();
 const collapse = ref<boolean>(false);
+const auth = authStore();
+const { user } = storeToRefs(auth);
 const menu = [
   {
     icon: "Home",
@@ -94,7 +100,6 @@ const menu = [
 
 const checkScreenSize = () => {
   collapse.value = window.innerWidth < 1024;
-  console.log("window size -->", window.innerWidth);
 };
 
 onMounted(() => {
@@ -105,6 +110,11 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("resize", checkScreenSize);
 });
+
+const handleLogout = function () {
+  useGqlToken(null);
+  navigateTo(localePath("/"));
+};
 </script>
 
 <style scoped></style>

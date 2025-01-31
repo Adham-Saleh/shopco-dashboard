@@ -6,6 +6,14 @@
                 slot
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { authStore } from "@/store/auth";
+const auth = authStore();
+onMounted(async () => {
+  await nextTick();
+  const me = await auth.authorize();
+  auth.setData(me);
+});
+</script>
 
 <style scoped></style>

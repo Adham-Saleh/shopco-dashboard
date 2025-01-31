@@ -73,7 +73,11 @@ body {
   padding: 7px !important;
 }
 
-.el-menu-item-group__title {
+// .el-menu-item-group__title {
+//   padding: 0 !important;
+// }
+
+.el-menu--collapse .el-menu-item-group__title {
   padding: 0 !important;
 }
 

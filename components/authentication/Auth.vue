@@ -1,5 +1,5 @@
 <template lang="pug">
-      Form(style="width: 404px;" :validationSchema="formSchema" @submit="handleSubmit")
+      Form(style="width: 404px;" :validationSchema="isLogin ? loginSchema : signupSchema" @submit="handleSubmit")
         h3 {{isLogin ? t('signInToYourAccount') : t('signUpForAnAccount')}}
         p.text-muted(v-if="isLogin") {{t('welcomeBackPleaseEnterYourDetail')}}
         InputText.py-2.px-3.mt-3(type="text" :placeholder="$t('username')" suffix="User" name="username" v-if="!isLogin")
@@ -26,8 +26,10 @@
 <script setup lang="ts">
 import * as yup from "yup";
 import { authStore } from "@/store/auth";
+import { useLocalePath } from "#i18n";
 
 const { t, locale } = useI18n();
+const localePath = useLocalePath();
 const auth = authStore();
 const loading = ref<boolean>(false);
 const props = defineProps({
@@ -42,7 +44,17 @@ const handleTogglePage = function (isLogin: boolean) {
   emit("togglePage", isLogin);
 };
 
-const formSchema = yup.object({
+const loginSchema = yup.object({
+  email: yup.string().required().email().label(t("email")),
+  password: yup
+    .string()
+    .required("Field is required")
+    .min(8, "Your password is not strong enough. Use at least 8 characters")
+    .label(t("password")),
+});
+
+const signupSchema = yup.object({
+  username: yup.string().required().label(t("username")),
   email: yup.string().required().email().label(t("email")),
   password: yup
     .string()
@@ -57,7 +69,6 @@ const handleSubmit = async function (values: {
   password: string;
 }) {
   const { username, email, password } = values;
-  console.log(email, password);
   loading.value = true;
   if (props.isLogin) {
     const { accessToken, refreshToken } = await auth.login(email, password);
@@ -66,6 +77,8 @@ const handleSubmit = async function (values: {
         type: "error",
         message: "Wrong email or password",
       });
+      loading.value = false;
+      return;
     }
     useGqlToken(accessToken as string);
     const me = await auth.authorize();
@@ -73,6 +86,20 @@ const handleSubmit = async function (values: {
       type: "success",
       message: "Logged in successfully",
     });
+    auth.setData(me);
+    navigateTo(localePath("/home"));
+  } else {
+    const data = await auth.signup({ name: username || "", email, password });
+    if (!data.success) {
+      ElMessage({
+        type: "error",
+        message: "Something went wrong",
+      });
+      loading.value = false;
+      return;
+    }
+    ElMessage({ type: "success", message: "Account created successfully" });
+    emit("togglePage", true);
   }
   loading.value = false;
 };
